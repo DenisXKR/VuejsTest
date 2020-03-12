@@ -1,17 +1,17 @@
 Vue.component('clients-list', {
-    props: ['clients'],
-    data: function () {
+    props: ['clicentlist'],
+    data() {
         return {
         }
     },
     methods: {
-        delClient: function (client) {
+        delClient(client) {
             this.$emit('delclient', client);
         }
     },
     template: `
     <div div class="row">
-    <table class="table" v-if="clients.length">
+    <table class="table" v-if="clicentlist.length">
         <thead>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -20,7 +20,7 @@ Vue.component('clients-list', {
             <th scope="col"></th>
         </thead>
         <tbody>
-            <tr v-for="(client, index) in clients">
+            <tr v-for="(client, index) in clicentlist">
                 <td>{{index + 1}}</td>
                 <td>{{client.Name}}</td>
                 <td>{{client.Phone}}</td>

@@ -4,20 +4,20 @@ var app = new Vue({
     data: {
         clients: []
     },
-    created: function () {
+    created() {
         //Test data
         this.clients.push(
-            new ClientModel('Client1', '23423432', 'Client1@mail.com'));
+            new ClientModel(1, 'Client1', '23423432', 'Client1@mail.com', 1));
         this.clients.push(
-            new ClientModel('Client2', '234432', 'Client2@mail.com'));
+            new ClientModel(2, 'Client2', '234432', 'Client2@mail.com', 2));
     },
     methods: {
-        addClient: function (client) {
+        addClient(client) {
             this.clients.push(client);
         },
-        delClient: function (client) {
+        delClient(client) {
             this.clients = this.clients.filter(function (el) {
-                return el.Name != client.Name;
+                return el.Id != client.Id;
             });
         }
     }

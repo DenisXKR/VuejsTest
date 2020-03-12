@@ -1,5 +1,5 @@
 Vue.component('client-input', {
-    data: function () {
+    data() {
         return {
             Name: '',
             Phone: '',
@@ -11,7 +11,7 @@ Vue.component('client-input', {
         };
     },
     methods: {
-        addClient: function () {
+        addClient() {
             const client = new ClientModel(this.Name, this.Phone, this.Email);
             this.validate(client);
 
@@ -22,7 +22,7 @@ Vue.component('client-input', {
                 this.Email = '';
             }
         },
-        validate: function (data) {
+        validate(data) {
             this.NameValid = false;
 
             if (data.Name) {
@@ -39,7 +39,7 @@ Vue.component('client-input', {
         }
     },
     template: `
-    <form class="client-form">
+    <form class="client-form" @submit.prevent="addClient">
         <h6>Add new client</h6>
         <div class="row">
             <div class="col">
@@ -56,7 +56,7 @@ Vue.component('client-input', {
             Invalid data!
         </div>
         <div div class="row centre mt-4">
-            <button v-on:click="addClient" type="button" class="btn btn-success">Add Client</button>
+            <button type="submit" class="btn btn-success">Add Client</button>
         </div>
     </form >`
 });
