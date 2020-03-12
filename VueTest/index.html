@@ -18,36 +18,15 @@
         <div class="row mt-3">
             <h6>Client list</h6>
         </div>
-        <div div class="row">
-            <table class="table" v-if="Clients.length">
-                <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col"></th>
-                </thead>
-                <tbody>
-                    <tr v-for="(client, index) in Clients">
-                        <td>{{index + 1}}</td>
-                        <td>{{client.Name}}</td>
-                        <td>{{client.Phone}}</td>
-                        <td>{{client.Email}}</td>
-                        <td>
-                            <button type="button" v-on:click="delClient(client)" class="btn btn-dark">Del</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div v-else class="ml-3">
-                List is empty
-            </div>
-        </div>
+
+        <clients-list v-bind:clients="clients" v-on:delclient="delClient"></clients-list>
+ 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="scripts/models.js"></script>
     <script src="scripts/clientInput.js"></script>
+    <script src="scripts/clientslist.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 
