@@ -6,7 +6,8 @@ Vue.component('client-input', {
             Email: '',
             NameValid: true,
             PhoneValid: true,
-            EmailValid: true
+            EmailValid: true,
+            isValid: true
         };
     },
     methods: {
@@ -33,12 +34,29 @@ Vue.component('client-input', {
 
             const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             this.EmailValid = data.Email.match(mailformat);
+
+            this.isValid = this.NameValid && this.PhoneValid && this.EmailValid;
         }
     },
-    computed: {
-        isValid: function () {
-            return this.NameValid && this.PhoneValid && this.EmailValid;
-        }
-    },
-    template: '#client-input-template'
+    template: `
+    <form class="client-form">
+        <h6>Add new client</h6>
+        <div class="row">
+            <div class="col">
+                <input type="text" v-bind:class="{'input-validate-error': !NameValid }" v-model="Name" class="form-control" placeholder="Name">
+            </div>
+            <div class="col">
+                <input type="text" v-bind:class="{'input-validate-error': !PhoneValid }" v-model="Phone" class="form-control" placeholder="Phone">
+            </div>
+            <div class="col">
+                <input type="text" v-bind:class="{'input-validate-error': !EmailValid }" v-model="Email" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <div v-if="!isValid" class="row centre validatiton-error">
+            Invalid data!
+        </div>
+        <div div class="row centre mt-4">
+            <button v-on:click="addClient" type="button" class="btn btn-success">Add Client</button>
+        </div>
+    </form >`
 });
