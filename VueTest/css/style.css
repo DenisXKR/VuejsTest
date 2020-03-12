@@ -1,0 +1,13 @@
+[v-cloak] > * { display:none; }
+
+.centre {
+    justify-content: center;
+}
+
+.validatiton-error {
+    color: red;
+}
+
+.input-validate-error {
+    border-color: red;
+}
