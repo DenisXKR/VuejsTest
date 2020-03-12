@@ -12,29 +12,8 @@
         <div div class="row">
             <h4>Clients</h4>
         </div>
-        <form style="max-width: 800px;">
-            <h6>Add new client</h6>
-            <div class="row">
-                <div class="col">
-                    <input type="text" v-bind:class="{'input-validate-error': !NameValid }" 
-                    v-model="Name" class="form-control" placeholder="Name">
-                </div>
-                <div class="col">
-                    <input type="text" v-bind:class="{'input-validate-error': !PhoneValid }" 
-                    v-model="Phone" class="form-control" placeholder="Phone">
-                </div>
-                <div class="col">
-                    <input type="text" v-bind:class="{'input-validate-error': !EmailValid }" 
-                     v-model="Email" class="form-control" placeholder="Email">
-                </div>
-            </div>
-            <div v-if="!isValid" class="row centre validatiton-error" >
-                Invalid data!
-            </div>
-            <div div class="row centre mt-4">
-                <button v-on:click="addClient" type="button" class="btn btn-success">Add Client</button>
-            </div>
-        </form>
+
+        <client-input v-on:newclient="addClient"></client-input>
 
         <div class="row mt-3">
             <h6>Client list</h6>
@@ -42,13 +21,15 @@
         <div div class="row">
             <table class="table" v-if="Clients.length">
                 <thead>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col"></th>
                 </thead>
                 <tbody>
-                    <tr v-for="client in Clients">
+                    <tr v-for="(client, index) in Clients">
+                        <td>{{index + 1}}</td>
                         <td>{{client.Name}}</td>
                         <td>{{client.Phone}}</td>
                         <td>{{client.Email}}</td>
@@ -64,7 +45,35 @@
         </div>
     </div>
 
+    <script type="text/x-template" id="client-input-template">
+        <form class="client-form">
+            <h6>Add new client</h6>
+            <div class="row">
+                <div class="col">
+                    <input type="text" v-bind:class="{'input-validate-error': !NameValid }" v-model="Name"
+                        class="form-control" placeholder="Name">
+                </div>
+                <div class="col">
+                    <input type="text" v-bind:class="{'input-validate-error': !PhoneValid }" v-model="Phone"
+                        class="form-control" placeholder="Phone">
+                </div>
+                <div class="col">
+                    <input type="text" v-bind:class="{'input-validate-error': !EmailValid }" v-model="Email"
+                        class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div v-if="!isValid" class="row centre validatiton-error">
+                Invalid data!
+            </div>
+            <div div class="row centre mt-4">
+                <button v-on:click="addClient" type="button" class="btn btn-success">Add Client</button>
+            </div>
+        </form>
+      </script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="scripts/models.js"></script>
+    <script src="scripts/clientInput.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 

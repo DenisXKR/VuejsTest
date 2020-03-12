@@ -1,4 +1,6 @@
-[v-cloak] > * { display:none; }
+[v-cloak] > * { 
+    display:none; 
+}
 
 .centre {
     justify-content: center;
@@ -10,4 +12,11 @@
 
 .input-validate-error {
     border-color: red;
+}
+
+.client-form {
+    max-width: 800px; 
+    border: 1px solid #dee2e6; 
+    margin: 20px; 
+    padding: 10px;
 }
